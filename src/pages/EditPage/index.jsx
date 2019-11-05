@@ -41,7 +41,7 @@ function EditPage() {
         />
       </div>
       <div className={prefix}>
-        <div contentEditable={true} className={`${prefix}-editor`}>
+        <div className={`${prefix}-editor`}>
           <CodeMirror
             style={{
               overflowX: 'none'

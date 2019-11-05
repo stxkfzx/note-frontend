@@ -1,23 +1,25 @@
 import React from 'react'
 import Cookie from 'js-cookie'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { withRouter } from 'react-router-dom'
 import './style.less'
 const prefix = 'stx-login'
 
 
 function Login(props) {
-  const { getFieldDecorator, validateFields } = props.form
+  const { form, history } = props
+  const { getFieldDecorator, validateFields } = form
 
   function handleSubmit(e) {
     e.preventDefault()
 
     validateFields((err, values) => {
-      if(!err) console.log(`reveived values of form,`, values)
+      if (!err) console.log(`reveived values of form,`, values)
       Cookie.set('token', 'oAfUk1QjKxlPKwDgW-JF1W5lRrFs')
+      history.push('/')
     })
 
   }
-
   return (
     <div className={prefix}>
       <Form onSubmit={handleSubmit} className={`${prefix}-login-form`}>
@@ -60,4 +62,4 @@ function Login(props) {
   )
 }
 
-export default Form.create({name: 'login'})(Login)
+export default Form.create({ name: 'login' })(withRouter(Login))
