@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+// eslint-disable-next-line
 import { Input, Button, Tree } from 'antd';
 import CodeMirror from '@uiw/react-codemirror';
 import moment from 'moment'
@@ -10,7 +11,7 @@ import './md.less'
 import './style.less'
 
 const prefix = 'edit-wrapper'
-const { TreeNode, DirectoryTree } = Tree;
+// const { TreeNode, DirectoryTree } = Tree;
 function EditPage() {
   const [tit, setTit] = useState('')
   const [article, setArticle] = useState('')
