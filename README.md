@@ -23,9 +23,9 @@
 
 ## 编辑器相关
 
-* [CodeMirror](!https://codemirror.net/ 'CodeMirror')
-* [showdown](!http://showdownjs.com/ 'showdown')
-* [markdown样式](!https://gist.github.com/xiaolai/aa190255b7dde302d10208ae247fc9f2)
+* [CodeMirror](https://codemirror.net/ 'CodeMirror')
+* [showdown](http://showdownjs.com/ 'showdown')
+* [markdown样式](https://gist.github.com/xiaolai/aa190255b7dde302d10208ae247fc9f2)
 
 ## 项目管理
 
