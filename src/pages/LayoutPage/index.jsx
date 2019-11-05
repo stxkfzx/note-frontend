@@ -74,9 +74,11 @@ export default function App() {
         <Header className={`${prefix}-header`}>
           <Menu mode='horizontal' className={`${prefix}-header-menu`}>
             <Menu.Item key='home'>
-              <Icon type='home' />
-              主页
-              </Menu.Item>
+              <Link to='/'>
+                <Icon type='home' />
+                主页
+              </Link>
+            </Menu.Item>
             <Menu.Item key='community'>
               <Icon type='profile' />
               社区
