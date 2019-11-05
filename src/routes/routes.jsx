@@ -11,6 +11,11 @@ export default [{
   component: lazy(() => import('../pages/AuthPage/index'))
 },
 {
+  path: '/edit',
+  exact: true,
+  component: lazy(() => import('../pages/EditPage/index'))
+},
+{
   path: '*',
   exact: true,
   component: lazy(() => import('../pages/404Page/index'))

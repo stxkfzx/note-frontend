@@ -1,7 +1,9 @@
-import { Login } from './AuthComponent'
+import { Login } from './AuthComponents'
 import { Loading } from './common'
+import { Preview } from './EditComponents'
 
 export {
   Login,
-  Loading
+  Loading,
+  Preview
 }

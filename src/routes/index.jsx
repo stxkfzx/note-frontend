@@ -12,22 +12,21 @@ const LayoutComponent = lazy(() => import('../pages/LayoutPage/index'))
 
 const PrivateRoute = props => {
   const { component: Component, ...rest } = props
-  console.log(props);
   return (
     <Route
       {...rest}
-      render={props => 
+      render={props =>
         Cookies.get('token') ? (
           <Component {...props} />
         ) : (
-          <Redirect 
-            to={{
-              pathname: '/auth',
-              search: props.location.search,
-              state: { from: props.location }
-            }}
-          />
-        )
+            <Redirect
+              to={{
+                pathname: '/auth',
+                search: props.location.search,
+                state: { from: props.location }
+              }}
+            />
+          )
       }
     />
   )
