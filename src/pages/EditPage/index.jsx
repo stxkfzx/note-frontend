@@ -4,6 +4,7 @@ import { Input, Button } from 'antd';
 import CodeMirror from '@uiw/react-codemirror';
 import moment from 'moment'
 import { Preview } from '@components'
+import { debounce, throttle } from '@utils'
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/eclipse.css';
 import './md.less'
@@ -13,9 +14,22 @@ const prefix = 'edit-wrapper'
 function EditPage() {
   const [tit, setTit] = useState('')
   const [article, setArticle] = useState('')
+  const [scroll, setScroll] = useState(0)
+
   useEffect(() => {
     setTit(moment().format('L'))
   }, [])
+
+  function handleChange(editor) {
+    setArticle(editor.getValue())
+    handleEditorScroll(editor)
+  }
+
+  function handleEditorScroll(editor) {
+    let { top, height, clientHeight } = editor.getScrollInfo()
+    top = top === 0 ? 0.1 : top
+    setScroll(top / (height - clientHeight))
+  }
 
   return (
     <>
@@ -54,12 +68,17 @@ function EditPage() {
               lineNumbers: true,
               scrollbarStyle: null,
               smartIndent: true,
-              lineWrapping: true,
+              lineWrapping: true
             }}
-            onChange={editor => setArticle(editor.getValue())}
+            onChange={debounce(handleChange, 500)}
+            onScroll={throttle(handleEditorScroll, 30)}
+            onContextMenu={(_, event) => {
+              event.preventDefault()
+              return false
+            }}
           />
         </div>
-        <Preview article={article} />
+        <Preview article={article} scrollTop={scroll} />
       </div>
     </>
   )
