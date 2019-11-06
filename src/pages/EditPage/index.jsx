@@ -35,23 +35,23 @@ function EditPage() {
     <>
       <div className={'edit-title'}>
         <Input
-          className={''}
-          placeholder='请输入文章标题'
-          onChange={e => setTit(e.target.value)}
-          value={tit}
-          maxLength={20}
-          size='large'
-          allowClear
-          addonAfter={
-            <div
-              style={{
-                width: '100px',
-                height: '100%'
-              }}
-            >
-              <Button type='primary'>发布</Button>
-            </div>
-          }
+        className={''}
+        placeholder='请输入文章标题'
+        onChange={e => setTit(e.target.value)}
+        value={tit}
+        maxLength={20}
+        size='large'
+        allowClear
+        addonAfter={
+        <div
+          style={{
+            width: '100px',
+            height: '100%'
+          }}
+        >
+          <Button type='primary'>发布</Button>
+        </div>
+      }
         />
       </div>
       <div className={prefix}>
