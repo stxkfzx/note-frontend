@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Switch, Redirect, Link } from 'react-route
 import { useDispatch } from 'redux-react-hook'
 import { Layout, Menu, Icon } from 'antd'
 import noLoginImg from '@assets/imgs/home/no_login.png'
+import loginImg from '@assets/imgs/home/login.jpg'
 import routes from '@routes/routes.jsx'
 import './style.less'
 
@@ -30,8 +31,8 @@ export default function App() {
       <Sider trigger={null} collapsible collapsed={fold}>
         <div className={`${prefix}-sider-avatar`}>
           {
-            false ?
-              <img src='http://img4.imgtn.bdimg.com/it/u=3721990951,2750770129&fm=26&gp=0.jpg' alt='' />
+            true ?
+              <img src={loginImg} alt='' />
               :
               <img src={noLoginImg} alt='' />
           }
@@ -47,7 +48,7 @@ export default function App() {
             }
           >
             <Menu.Item key="sub1">签到</Menu.Item>
-            <Menu.Item key="sub3">设置</Menu.Item>
+            <Menu.Item key="sub2">设置</Menu.Item>
           </SubMenu>
 
           <SubMenu
@@ -59,8 +60,8 @@ export default function App() {
               </span>
             }
           >
-            <Menu.Item key="sub1"><Link to='/edit'>记笔记</Link></Menu.Item>
-            <Menu.Item key="sub2">查看</Menu.Item>
+            <Menu.Item key="sub3"><Link to='/edit'>记笔记</Link></Menu.Item>
+            <Menu.Item key="sub4">查看</Menu.Item>
           </SubMenu>
         </Menu>
         <div

@@ -10,8 +10,8 @@ function Preview(props) {
   const dom = useRef()
   useEffect(() => {
     dom.current.scrollTo(0, scrollTop * (dom.current.scrollHeight + dom.current.clientHeight))
-    console.log(Math.round(scrollTop * dom.current.scrollHeight))
   }, [dom, scrollTop])
+
   return (
     <div
       className={`${prefix}`}
