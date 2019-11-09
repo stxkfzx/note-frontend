@@ -1,84 +1,72 @@
 import React, { useState } from 'react'
-import { Tree, Button, Popover, Modal, Input, Icon } from 'antd'
+import { Tree, Button, Modal, Input, Icon } from 'antd'
+import TreeTitle from './TreeTitle'
 import './style.less'
 
 const prefix = 'catalogue-wrapper'
 const { TreeNode, DirectoryTree } = Tree
-const { confirm } = Modal
 
 const treeDatas = [
   {
-    catalogueTit: 'java学习',
-    childs: [
+    key: '0',
+    title: 'java学习',
+    children: [
       {
-        title: '学习笔记1'
+        key: '0-1',
+        title: 'java学习1'
       },
       {
-        title: '学习笔记2'
+        key: '0-2',
+        title: 'java学习1'
       }
     ]
   },
   {
-    catalogueTit: '前端学习',
-    childs: [
+    key: '1',
+    title: '前端学习',
+    children: [
       {
-        title: '学习笔记1'
+        key: '1-1',
+        title: '前端学习1'
       },
       {
-        title: '学习笔记2'
+        key: '1-2',
+        title: '前端学习2'
       }
     ]
   }
 ]
 
 function Catalogue() {
-  const [pos, setPos] = useState([0, 0])
-  const [popVisiable, setPopVisiable] = useState(false)
-  // modalVisiable[visiable, type]
-  // type 0: delete modal
-  // type 1: add new modal
-  const [modalVisiable, setModalVisiable] = useState([false, -1])
+  const [modalVisiable, setModalVisiable] = useState(false)
   // info[id, name]
-  const [info, setInfo] = useState([null, null])
-  // new filename
-  const [fileName, setFileName] = useState('')
-  console.log(fileName);
+  // selected item
+  const [info, setInfo] = useState('')
+  // new folder name
+  const [folderName, setFolderName] = useState('')
+  const [moveInfo, setMoveInfo] = useState({
+    form: null,
+    to: null
+  })
+  console.log(moveInfo);
+  console.log(info);
   function handleSelect(key, _) {
-    setInfo([key[0], ''])
-  }
-  function handleExpand(e) {
-    console.log(e, 'expand')
+    if (_.node.isLeaf()) {
+      setInfo(key[0])
+    }
   }
 
-  function showDeleteConfirm() {
-    confirm({
-      title: `确认删除《${info[1]}》吗?`,
-      content: '注意: 一经删除,无法找回',
-      okText: '确认',
-      okType: 'danger',
-      cancelText: '再想想',
-      onOk() {
-        // TODO
-        console.log('OK');
-      }
-    });
-  }
 
   return (
-    <div
-      className={`${prefix}`}
-      onClick={() => {
-        setPopVisiable(false)
-      }}
-    >
+    <div className={`${prefix}`} >
       <Modal
-        title={modalVisiable[1] === 0 ? '请输入新的文件夹名称' : '请输入文件夹名称'}
-        visible={modalVisiable[0]}
+        title={'请输入文件夹名称'}
+        visible={modalVisiable}
         onOk={() => {
-          setModalVisiable([false, -1])
+          setModalVisiable(false)
         }}
         onCancel={() => {
-          setModalVisiable([false, -1])
+          setModalVisiable(false)
         }}
         okText='确认'
         cancelText='取消'
@@ -87,44 +75,19 @@ function Catalogue() {
           placeholder='请输入'
           autoFocus
           onChange={(e) => {
-            setFileName(e.target.value)
+            setFolderName(e.target.value)
           }}
           addonBefore={<Icon type='profile' />}
         />
       </Modal>
-      <Popover
-        visible={popVisiable}
-        placement='bottomLeft'
-        content={
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Button
-              style={{ marginBottom: '10px' }}
-              onClick={() => {
-                setModalVisiable([true, 0])
-              }}
-            >
-              修改文件夹
-            </Button>
-            <Button
-              onClick={showDeleteConfirm}
-            >
-              删除文件夹
-            </Button>
-          </div>
-        }
-      >
-        <div
-          style={{ position: 'absolute', left: pos[0], top: pos[1] }}
-        />
-      </Popover>
       <Button
-        icon='file-add'
+        icon='folder-add'
         ghost
         shape='round'
         type='primary'
         style={{ marginBottom: '10px' }}
         onClick={() => {
-          setModalVisiable([true, 1])
+          setModalVisiable(true)
         }}
       >
         添加文件夹
@@ -132,29 +95,34 @@ function Catalogue() {
       <DirectoryTree
         multiple
         onSelect={handleSelect}
-        onExpand={handleExpand}
         className={`${prefix}-catalogue`}
         checkStrictly
         onRightClick={e => {
           e.event.preventDefault()
-          setInfo([e.node.props.eventKey, e.node.props.title])
-          setPos([e.event.clientX, e.event.clientY])
-          setPopVisiable(true)
+        }}
+        draggable
+        onDrop={obj => {
+          const { dragNode, node } = obj
+          const newMoveInfo = {
+            from: dragNode.props.eventKey,
+            to: node.props.eventKey
+          }
+          setMoveInfo(newMoveInfo)
         }}
       >
         {
-          treeDatas.map((childs, parentIndex) => (
+          treeDatas.map(childs => (
             <TreeNode
               blockNode
-              title={childs.catalogueTit}
-              key={parentIndex}
+              title={<TreeTitle title={childs.title} type='folder' id={childs.key} />}
+              key={childs.key}
             >
               {
-                childs.childs.map((item, chiladIndex) => (
+                childs.children.map(item => (
                   <TreeNode
                     blockNode
-                    title={item.title}
-                    key={`${parentIndex}-${chiladIndex}`}
+                    title={<TreeTitle title={item.title} id={`${item.key}`} />}
+                    key={`${item.key}`}
                     isLeaf
                   />
                 ))
