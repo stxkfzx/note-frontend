@@ -9,9 +9,7 @@ function Preview(props) {
   const { scrollTop, article } = props
   const dom = useRef(null)
   useEffect(() => {
-    if (dom.current.scrollTop) {
-      dom.current.scrollTo(0, scrollTop * (dom.current.scrollHeight + dom.current.clientHeight))
-    }
+    dom.current.scrollTop = scrollTop * (dom.current.scrollHeight + dom.current.clientHeight)
   }, [dom, scrollTop])
 
   return (
