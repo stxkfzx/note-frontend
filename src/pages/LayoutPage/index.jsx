@@ -18,14 +18,13 @@ const RouteWithSubRoutes = route => (
   )} />
 )
 
-export default function App() {
+function App() {
   const { global } = useDispatch()
   const [fold, setFold] = useState(true)
   useEffect(() => {
     // global.getUserInfo()
     // console.log(global);
   }, [global])
-
   return (
     <Layout className={prefix}>
       <Sider trigger={null} collapsible collapsed={fold}>
@@ -39,29 +38,29 @@ export default function App() {
         </div>
         <Menu style={{ position: 'relative' }} theme='dark' mode='inline' defaultSelectedKeys={['1']}>
           <SubMenu
-            key="1"
+            key='1'
             title={
               <span>
-                <Icon type="user" />
+                <Icon type='user' />
                 <span>我的</span>
               </span>
             }
           >
-            <Menu.Item key="sub1">签到</Menu.Item>
-            <Menu.Item key="sub2">设置</Menu.Item>
+            <Menu.Item key='sub1'>签到</Menu.Item>
+            <Menu.Item key='sub2'>设置</Menu.Item>
           </SubMenu>
 
           <SubMenu
-            key="2"
+            key='2'
             title={
               <span>
-                <Icon type="edit" />
+                <Icon type='edit' />
                 <span>笔记</span>
               </span>
             }
           >
-            <Menu.Item key="sub3"><Link to='/edit'>记笔记</Link></Menu.Item>
-            <Menu.Item key="sub4">查看</Menu.Item>
+            <Menu.Item key='sub3'><Link to='/edit'>记笔记</Link></Menu.Item>
+            <Menu.Item key='sub4'>查看</Menu.Item>
           </SubMenu>
         </Menu>
         <div
@@ -100,3 +99,5 @@ export default function App() {
     </Layout>
   )
 }
+
+export default React.memo(App)

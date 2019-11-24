@@ -49,7 +49,6 @@ function Catalogue() {
     to: null
   })
   console.log(moveInfo);
-  console.log(info);
   function handleSelect(key, _) {
     if (_.node.isLeaf()) {
       setInfo(key[0])
@@ -135,4 +134,4 @@ function Catalogue() {
   )
 }
 
-export default Catalogue
+export default React.memo(Catalogue)

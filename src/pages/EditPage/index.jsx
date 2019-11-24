@@ -62,6 +62,7 @@ function EditPage() {
                 <Button type='primary'>发布</Button>
               </div>
             }
+            autoFocus={true}
           />
         </div>
         <div className={`${prefix}-editor-wrapper`}>

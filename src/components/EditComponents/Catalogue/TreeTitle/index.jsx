@@ -8,7 +8,6 @@ function TreeTitle(props) {
   const [modalVisiable, setModalVisiable] = useState(false)
   // new name
   const [fileName, setFileName] = useState('')
-
   const { title, type, id } = props
   function stopPropagation(e) {
     e.stopPropagation()
@@ -106,4 +105,4 @@ function TreeTitle(props) {
 }
 
 
-export default TreeTitle
+export default React.memo(TreeTitle)
