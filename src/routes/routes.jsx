@@ -3,17 +3,12 @@ import { lazy } from 'react'
 export default [{
   path: '/',
   exact: true,
-  component: lazy(() => import('../pages/HomePage/index'))
+  component: lazy(() => import('../pages/EditPage/index'))
 },
 {
   path: '/auth',
   exact: true,
   component: lazy(() => import('../pages/AuthPage/index'))
-},
-{
-  path: '/edit',
-  exact: true,
-  component: lazy(() => import('../pages/EditPage/index'))
 },
 {
   path: '*',

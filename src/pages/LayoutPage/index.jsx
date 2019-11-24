@@ -47,7 +47,7 @@ export default function App() {
             }
           >
             <Menu.Item key="sub1">签到</Menu.Item>
-            <Menu.Item key="sub3">设置</Menu.Item>
+            <Menu.Item key="sub2">设置</Menu.Item>
           </SubMenu>
 
           <SubMenu
@@ -59,8 +59,8 @@ export default function App() {
               </span>
             }
           >
-            <Menu.Item key="sub1"><Link to='/edit'>记笔记</Link></Menu.Item>
-            <Menu.Item key="sub2">查看</Menu.Item>
+            <Menu.Item key="sub3">记笔记</Menu.Item>
+            <Menu.Item key="sub4">查看</Menu.Item>
           </SubMenu>
         </Menu>
         <div
