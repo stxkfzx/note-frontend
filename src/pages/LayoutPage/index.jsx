@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Switch, Redirect, Link } from 'react-route
 import { useDispatch } from 'redux-react-hook'
 import { Layout, Menu, Icon } from 'antd'
 import noLoginImg from '@assets/imgs/home/no_login.png'
+import loginImg from '@assets/imgs/home/login.jpg'
 import routes from '@routes/routes.jsx'
 import './style.less'
 
@@ -17,50 +18,49 @@ const RouteWithSubRoutes = route => (
   )} />
 )
 
-export default function App() {
+function App() {
   const { global } = useDispatch()
   const [fold, setFold] = useState(true)
   useEffect(() => {
     // global.getUserInfo()
     // console.log(global);
   }, [global])
-
   return (
     <Layout className={prefix}>
       <Sider trigger={null} collapsible collapsed={fold}>
         <div className={`${prefix}-sider-avatar`}>
           {
-            false ?
-              <img src='http://img4.imgtn.bdimg.com/it/u=3721990951,2750770129&fm=26&gp=0.jpg' alt='' />
+            true ?
+              <img src={loginImg} alt='' />
               :
               <img src={noLoginImg} alt='' />
           }
         </div>
         <Menu style={{ position: 'relative' }} theme='dark' mode='inline' defaultSelectedKeys={['1']}>
           <SubMenu
-            key="1"
+            key='1'
             title={
               <span>
-                <Icon type="user" />
+                <Icon type='user' />
                 <span>我的</span>
               </span>
             }
           >
-            <Menu.Item key="sub1">签到</Menu.Item>
-            <Menu.Item key="sub2">设置</Menu.Item>
+            <Menu.Item key='sub1'>签到</Menu.Item>
+            <Menu.Item key='sub2'>设置</Menu.Item>
           </SubMenu>
 
           <SubMenu
-            key="2"
+            key='2'
             title={
               <span>
-                <Icon type="edit" />
+                <Icon type='edit' />
                 <span>笔记</span>
               </span>
             }
           >
-            <Menu.Item key="sub3">记笔记</Menu.Item>
-            <Menu.Item key="sub4">查看</Menu.Item>
+            <Menu.Item key='sub3'><Link to='/edit'>记笔记</Link></Menu.Item>
+            <Menu.Item key='sub4'>查看</Menu.Item>
           </SubMenu>
         </Menu>
         <div
@@ -99,3 +99,5 @@ export default function App() {
     </Layout>
   )
 }
+
+export default React.memo(App)
