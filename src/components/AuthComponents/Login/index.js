@@ -1,7 +1,7 @@
 import React from 'react'
 import Cookie from 'js-cookie'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
-import { withRouter } from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import './style.less'
 const prefix = 'stx-login'
 
@@ -55,7 +55,7 @@ function Login(props) {
           <Button type="primary" htmlType="submit" className={`${prefix}-login-form-button`}>
             登陆
           </Button>
-          没有账号? <span className={`${prefix}-tips`}>马上注册!</span>
+          没有账号? <span className={`${prefix}-tips`}><Link to='/register'>马上注册!</Link></span>
         </Form.Item>
       </Form>
     </div>
