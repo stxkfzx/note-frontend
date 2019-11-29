@@ -24,6 +24,7 @@ function App() {
   useEffect(() => {
     // global.getUserInfo()
     // console.log(global);
+    //
   }, [global])
   return (
     <Layout className={prefix}>
