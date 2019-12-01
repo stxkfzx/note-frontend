@@ -10,6 +10,11 @@ export default [{
   exact: true,
   component: lazy(() => import('../pages/AuthPage/index'))
 },
+  {
+    path: '/register',
+    exact: true,
+    component: lazy(() => import('../pages/RegisterPage/index'))
+  },
 {
   path: '*',
   exact: true,
